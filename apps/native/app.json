@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "scheme": "hono-orpc-app",
+    "userInterfaceStyle": "automatic",
+    "orientation": "default",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "hono-orpc-app",
+    "slug": "hono-orpc-app",
+    "plugins": [
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
