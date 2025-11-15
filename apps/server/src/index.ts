@@ -4,7 +4,7 @@ import { OpenAPIReferencePlugin } from '@orpc/openapi/plugins'
 import { ZodToJsonSchemaConverter } from '@orpc/zod/zod4'
 import { RPCHandler } from '@orpc/server/fetch'
 import { onError } from '@orpc/server'
-import { createContext } from '@hono-orpc-app/api/orpc'
+import { createORPCContext } from '@hono-orpc-app/api/orpc'
 // import { appRouter } from '@hono-orpc-app/api/routers/index'
 import { appRouter } from '@hono-orpc-app/api/router'
 import { auth } from '@hono-orpc-app/auth'
@@ -49,7 +49,7 @@ export const rpcHandler = new RPCHandler(appRouter, {
 })
 
 app.use('/*', async (c, next) => {
-  const context = await createContext({ context: c })
+  const context = await createORPCContext({ context: c })
 
   const rpcResult = await rpcHandler.handle(c.req.raw, {
     prefix: '/rpc',
@@ -61,7 +61,7 @@ app.use('/*', async (c, next) => {
   }
 
   const apiResult = await apiHandler.handle(c.req.raw, {
-    prefix: '/api-reference',
+    prefix: '/api',
     context: context,
   })
 
